@@ -1,7 +1,8 @@
 require_relative "task.rb"
+require 'pry'
 
 class TodoList
-  attr_accessor :tasks
+  attr_accessor :tasks, :user
   def initialize(user)
     @user = user
     @tasks = []
@@ -33,4 +34,47 @@ class TodoList
       false
     end
   end
+
+  def save
+    File.open("tasks.txt", 'w') {|file| file.truncate(0) }
+    File.open("tasks.txt", 'a+') do |f|
+      f.write("#{@user}\n")
+      @tasks.each do |i|
+        task_array = "#{i.id}, #{i.content}, #{i.complete}, #{i.created_at}, #{i.updated_at}\n"
+        f.write(task_array)
+      end
+    end
+  end
+
+  def load_from_file
+    text = File.open("tasks.txt").read
+    text_array = text.split("\n")
+    first_line = true
+    text_array.each do |t|
+      if first_line
+        @user = t
+        first_line = false
+      else
+        line_array = t.split(", ")
+        task=Task.new(line_array[1])
+        task.id = line_array[0]
+        task.complete = line_array[2]
+        task.created_at = line_array[3]
+        if line_array[4] != ""
+          task.updated_at = line_array[4]
+        end
+      end
+    end
+  end
 end
+
+#list1 = TodoList.new("Josh")
+#task1 = Task.new("Walk the dog")
+#task2 = Task.new("Do nothing")
+#task3 = Task.new("Test")
+#list1.add_task(task1)
+#list1.add_task(task2)
+#list1.add_task(task3)
+#list1.load_from_file
+
+#binding.pry

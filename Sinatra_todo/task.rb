@@ -1,5 +1,5 @@
 class Task
-    attr_accessor :content, :id, :created_at, :updated_at
+    attr_accessor :content, :id, :created_at, :updated_at, :complete, :current_id
     @@current_id = 1
     def initialize(content)
         @content = content

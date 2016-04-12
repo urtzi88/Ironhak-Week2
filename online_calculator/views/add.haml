@@ -1,0 +1,13 @@
+%head
+  %title== #{@@name}
+  %link{:href => "style.css", :rel => "stylesheet", :type => "text/css"}/
+%body
+.container
+  %header
+    %h1
+      %a{:href => "/"} Calculator
+      >> #{@@name}
+  %form{:action => "/operation_result", :method => "post"}
+    %input#num1{:type => "text", name: "num1", placeholder: "Num1"}/
+    %input#num2{:type => "text", name: "num2", placeholder: "Num2"}/
+    %button#calc{:name => "operation", :type => "submit", :value => "#{@@operation}"}== #{@@name}

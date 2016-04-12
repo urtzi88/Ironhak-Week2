@@ -1,0 +1,10 @@
+%head
+  %title== #{@@name}
+  %link{:href => "style.css", :rel => "stylesheet", :type => "text/css"}/
+%body
+.container
+  %header
+    %h1
+      %a{:href => "/"} Calculator
+      >> #{@@name} >> Result
+  %h2== #{@num1} #{@symbol} #{@num2} = #{@result}

@@ -78,4 +78,39 @@ RSpec.describe Task do
       expect(@todo.sort_by_created("LOL")).to eq(false)
     end
   end
+
+  describe "save" do
+    before do
+      @todo = TodoList.new("Josh")
+      @task1 = Task.new("Walk the dog")
+      @task2 = Task.new("Buy milk")
+      @task3 = Task.new("Fuck off")
+      @todo.add_task(@task3)
+      @todo.add_task(@task2)
+      @todo.add_task(@task1)
+    end
+
+    it "should write on a text file" do
+      @todo.save
+      expect(IO.read("tasks.txt")).to_not eq(nil)
+    end
+  end
+
+  describe "load_from_file" do
+    before do
+      @todo = TodoList.new("Josh")
+      @task1 = Task.new("Walk the dog")
+      @task2 = Task.new("Buy milk")
+      @task3 = Task.new("Fuck off")
+      @todo.add_task(@task3)
+      @todo.add_task(@task2)
+      @todo.add_task(@task1)
+      @todo.save
+    end
+
+    it "should read the name josh" do
+      @todo.load_from_file
+      expect(@todo.user).to eq("Josh")
+    end
+  end
 end

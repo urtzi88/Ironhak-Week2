@@ -1,0 +1,12 @@
+%head
+  %title Calculator
+  %link{:href => "style.css", :rel => "stylesheet", :type => "text/css"}/
+%body
+.container
+  %header
+    %h1 Calculator >> Select operation
+  %form{:action => "/operation", :method => "post"}
+    %button{:name => "ADD", :type => "submit", :value => "addition"} ADD
+    %button{:name => "SUB", :type => "submit", :value => "subtract"} SUB
+    %button{:name => "MULT", :type => "submit", :value => "multiply"} MULT
+    %button{:name => "DIV", :type => "submit", :value => "divide"} DIV
