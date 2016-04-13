@@ -1,0 +1,37 @@
+.line_cont{
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+#title{
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.checkbox, .id, .content, .created_at, .updated_at, .complete{
+  display: block;
+  float: left;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.checkbox{
+  width: 70px;
+}
+
+.id{
+  width: 20px;
+}
+
+.content{
+  width: 300px;
+}
+
+.created_at, .updated_at{
+  width: 250px;
+}
+
+.complete{
+  width: 50px;
+}

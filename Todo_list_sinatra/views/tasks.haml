@@ -1,0 +1,46 @@
+%head
+  %title== #{@@todo_list.user}'s TODO list
+  %link{:href => "style.css", :rel => "stylesheet", :type => "text/css"}/
+%body
+  %h1== #{@@todo_list.user}'s TODO list
+  .line_cont
+    .checkbox
+      #title Checkbox
+    .id
+      #title Id
+    .content
+      #title Content
+    .created_at
+      #title Created at
+    .updated_at
+      #title Updated at
+    .complete
+      #title Complete
+
+  %form{method: 'post', action: '/action'}
+    - @@todo_list.tasks.each do |i|
+      .line_cont
+        .checkbox
+          %input{:name => i.id, :type => "checkbox", :value => i.id}/
+        .id
+          #{i.id}
+        .content
+          #{i.content}
+        .created_at
+          #{i.created_at}
+        .updated_at
+          - if i.updated_at
+            #{i.updated_at}
+          - else
+            Not updated
+        .complete
+          #{i.complete}
+      %br
+      %br
+    %input{:type => "submit", :name => "complete", :value => "Mark Complete"}
+    %input{:type => "submit", :name => "uncomplete", :value => "Mark Uncomplete"}
+    %input{:type => "submit", :name => "delete", :value => "Delete Task"}
+
+  %form{method: 'post', action: '/add'}
+    %input{:type => "text", name: "content", placeholder: "Task Description"}/
+    %input{:type => "submit", :name => "submit", :value => "Add"}
