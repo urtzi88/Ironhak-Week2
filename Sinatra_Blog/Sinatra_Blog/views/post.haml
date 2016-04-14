@@ -1,0 +1,16 @@
+%head
+  %title== #{@title}
+%body
+  %header
+    %h1== #{@title}
+
+  %h3
+    On:
+    #{@date.strftime("%F")}
+    By:
+    #{@author}
+  %p== #{@text}
+  %p
+    Category:
+    #{@category}
+  %a{:href => '/'}Return
